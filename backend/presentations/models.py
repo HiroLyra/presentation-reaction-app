@@ -6,7 +6,7 @@ class Presentation(models.Model):
     発表セッションを表すモデル。
 
     各発表には一意のUUID、タイトル、説明、作成日時、
-    および4種類の反応（thumbs_up, heart, laugh, surprise）のカウンターが含まれます。
+    および4種類の反応（thumbs_up, heart, laugh, surprise）のカウンターが含まれる。
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
