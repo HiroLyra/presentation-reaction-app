@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 import uuid
 
 class Presentation(models.Model):
@@ -44,13 +45,14 @@ class Presentation(models.Model):
             >>> presentation.add_reaction('thumbs_up')
         """
         if reaction_type == 'thumbs_up':
-            self.thumbs_up += 1
+            self.thumbs_up = F('thumbs_up') + 1
         elif reaction_type == 'heart':
-            self.heart += 1
+            self.heart = F('heart') + 1
         elif reaction_type == 'laugh':
-            self.laugh += 1
+            self.laugh = F('laugh') + 1
         elif reaction_type == 'surprise':
-            self.surprise += 1
+            self.surprise = F('surprise') + 1
         else:
             raise ValueError(f"Invalid reaction type: {reaction_type}")
         self.save()
+        self.refresh_from_db()
