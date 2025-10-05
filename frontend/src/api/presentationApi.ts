@@ -8,7 +8,7 @@ import type {
   ReactionType,
 } from "../types/presentation";
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "https://presentation-reaction-api.onrender.com",
   timeout: 30000,
 });
 
