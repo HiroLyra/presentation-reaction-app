@@ -1,21 +1,37 @@
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { createPresentation } from "../api/presentationApi";
+import Modal from "../components/Modal";
 
 const CreatePresentationPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalType, setModalType] = useState<'error' | 'success' | 'info' | 'confirm'>('info');
+
   const handleSubmit = async () => {
     if (!title) {
-      alert("タイトルを入力してください");
+      setModalTitle("");
+      setModalMessage("タイトルを入力してください");
+      setModalType("info");
+      setModalOpen(true);
       return;
     }
     try {
       const response = await createPresentation({ title, description });
       console.log("成功:", response);
+      setModalTitle("成功");
+      setModalMessage("発表を作成しました");
+      setModalType("success");
+      setModalOpen(true);
     } catch (error) {
       console.error("エラー:", error);
-      alert("発表の作成に失敗しました");
+      setModalTitle("エラー");
+      setModalMessage("発表の作成に失敗しました");
+      setModalType("error");
+      setModalOpen(true);
     }
   };
   return (
@@ -55,6 +71,14 @@ const CreatePresentationPage = () => {
           作成
         </Button>
       </Box>
+
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title={modalTitle}
+        message={modalMessage}
+        type={modalType}
+      />
     </Container>
   );
 };
