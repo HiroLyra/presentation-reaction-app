@@ -1,15 +1,19 @@
 import { Container, TextField, Button, Box, Typography } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createPresentation } from "../api/presentationApi";
 import Modal from "../components/Modal";
 
 const CreatePresentationPage = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
-  const [modalType, setModalType] = useState<'error' | 'success' | 'info' | 'confirm'>('info');
+  const [modalType, setModalType] = useState<
+    "error" | "success" | "info" | "confirm"
+  >("info");
 
   const handleSubmit = async () => {
     if (!title) {
@@ -22,10 +26,7 @@ const CreatePresentationPage = () => {
     try {
       const response = await createPresentation({ title, description });
       console.log("成功:", response);
-      setModalTitle("成功");
-      setModalMessage("発表を作成しました");
-      setModalType("success");
-      setModalOpen(true);
+      navigate(`/presentation/${response.id}`);
     } catch (error) {
       console.error("エラー:", error);
       setModalTitle("エラー");
