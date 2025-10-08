@@ -34,7 +34,13 @@ const PresentationPage = () => {
 
   useEffect(() => {
     fetchPresentation();
-  }, []);
+
+    const intervalId = setInterval(() => {
+      fetchPresentation();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [presentationId]);
 
   const handleReaction = async (
     reactionType: "thumbs_up" | "heart" | "laugh" | "surprise"
