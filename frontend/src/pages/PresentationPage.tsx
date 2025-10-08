@@ -74,6 +74,15 @@ const PresentationPage = () => {
             {presentation.title}
           </Typography>
 
+          {presentation.description && (
+            <Typography
+              variant="body1"
+              sx={{ textAlign: "center", color: "text.secondary", mb: 2 }}
+            >
+              {presentation.description}
+            </Typography>
+          )}
+
           <Box sx={{ mt: 4 }}>
             <Grid container spacing={3} justifyContent="center">
               <Grid size={{ xs: 6, sm: 3, md: 2 }}>
