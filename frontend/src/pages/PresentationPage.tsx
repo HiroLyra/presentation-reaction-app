@@ -76,7 +76,7 @@ const PresentationPage = () => {
 
           <Box sx={{ mt: 4 }}>
             <Grid container spacing={3} justifyContent="center">
-              <Grid item xs={6} sm={3} md={2}>
+              <Grid size={{ xs: 6, sm: 3, md: 2 }}>
                 <Box sx={{ textAlign: "center" }}>
                   <Typography variant="h1" sx={{ fontSize: "4rem" }}>
                     👍
@@ -86,7 +86,7 @@ const PresentationPage = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={6} sm={3} md={2}>
+              <Grid size={{ xs: 6, sm: 3, md: 2 }}>
                 <Box sx={{ textAlign: "center" }}>
                   <Typography variant="h1" sx={{ fontSize: "4rem" }}>
                     ❤️
@@ -96,7 +96,7 @@ const PresentationPage = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={6} sm={3} md={2}>
+              <Grid size={{ xs: 6, sm: 3, md: 2 }}>
                 <Box sx={{ textAlign: "center" }}>
                   <Typography variant="h1" sx={{ fontSize: "4rem" }}>
                     😂
@@ -106,7 +106,7 @@ const PresentationPage = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={6} sm={3} md={2}>
+              <Grid size={{ xs: 6, sm: 3, md: 2 }}>
                 <Box sx={{ textAlign: "center" }}>
                   <Typography variant="h1" sx={{ fontSize: "4rem" }}>
                     😮
@@ -121,7 +121,7 @@ const PresentationPage = () => {
         </Paper>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Box
                 sx={{
@@ -142,10 +142,10 @@ const PresentationPage = () => {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 2 }}>
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <Button
                     variant="contained"
                     fullWidth
@@ -155,7 +155,7 @@ const PresentationPage = () => {
                     👍
                   </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <Button
                     variant="contained"
                     fullWidth
@@ -165,7 +165,7 @@ const PresentationPage = () => {
                     ❤️
                   </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <Button
                     variant="contained"
                     fullWidth
@@ -175,7 +175,7 @@ const PresentationPage = () => {
                     😂
                   </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <Button
                     variant="contained"
                     fullWidth

@@ -5,7 +5,6 @@ import type {
   CreatePresentationRequest,
   CreatePresentationResponse,
   GetPresentationResponse,
-  ReactionType,
 } from "../types/presentation";
 const api = axios.create({
   baseURL: "https://presentation-reaction-api.onrender.com",
