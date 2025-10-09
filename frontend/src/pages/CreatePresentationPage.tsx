@@ -49,6 +49,10 @@ const CreatePresentationPage = () => {
           margin="normal"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          slotProps={{
+            htmlInput: { maxLength: 255 },
+          }}
+          helperText={`${title.length}/255文字`}
         />
 
         <TextField

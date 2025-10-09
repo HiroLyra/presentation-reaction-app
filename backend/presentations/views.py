@@ -28,7 +28,7 @@ def create_presentation(request: HttpRequest) -> JsonResponse:
     try:
         data: Dict[str, Any] = json.loads(request.body)
 
-        title: str | None = data.get('title')
+        title: str = data.get('title', '')
         description: str = data.get('description', '')
 
         if not title:
