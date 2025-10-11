@@ -1,7 +1,7 @@
 name: reviewdog
 
 on:
-  pull_request:
+  pull_request_target:  # pull_requestの代わりにこれを使う
   push:
     branches: [main, feature/**]
 
