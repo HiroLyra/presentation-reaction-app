@@ -1,19 +1,10 @@
 import json
-from django.test import Client, TestCase, override_settings
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from .models import Presentation
 
 
-TEST_DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
-    }
-}
-
-
-@override_settings(DATABASES=TEST_DATABASES)
 class PresentationModelTests(TestCase):
     """Presentationモデルのリアクション処理と基本項目を確認する。"""
 
@@ -63,7 +54,6 @@ class PresentationModelTests(TestCase):
             presentation.add_reaction("invalid")
 
 
-@override_settings(DATABASES=TEST_DATABASES)
 class PresentationViewTests(TestCase):
     """プレゼンテーション関連APIの成功・失敗応答を確認する。"""
 
