@@ -2,7 +2,7 @@ import { Container, Box, Typography, Button, Paper, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
-import { getPresentation } from "../api/presentationApi";
+import { getPresentation, addReaction } from "../api/presentationApi";
 import type { GetPresentationResponse } from "../types/presentation";
 import Modal from "../components/Modal";
 import { useWebSocket } from "../hooks/useWebSocket";
@@ -44,10 +44,12 @@ const PresentationPage = () => {
     fetchPresentation();
   }, [presentationId]);
 
-  const handleReaction = (
+  const handleReaction = async (
     reactionType: "thumbs_up" | "heart" | "laugh" | "surprise"
   ) => {
     try {
+      await addReaction({ id: presentationId, reactionType });
+
       sendMessage({ reaction_type: reactionType });
     } catch (error) {
       console.error("エラー:", error);

@@ -18,7 +18,6 @@ class ReactionConsumer(AsyncWebsocketConsumer):
         """
         WebSocket切断時の処理
         """
-        # グループから離脱
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     async def receive(self, text_data):
