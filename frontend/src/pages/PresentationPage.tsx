@@ -5,6 +5,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { getPresentation, addReaction } from "../api/presentationApi";
 import type { GetPresentationResponse } from "../types/presentation";
 import Modal from "../components/Modal";
+import { useWebSocket } from "../hooks/useWebSocket";
 
 const PresentationPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +19,13 @@ const PresentationPage = () => {
   >("info");
 
   const presentationId = id || "";
+
+  const { sendMessage } = useWebSocket({
+    url: `wss://presentation-reaction-api.onrender.com/ws/presentations/${presentationId}/`,
+    onMessage: (data) => {
+      fetchPresentation();
+    },
+  });
 
   const fetchPresentation = async () => {
     try {
@@ -34,20 +42,13 @@ const PresentationPage = () => {
 
   useEffect(() => {
     fetchPresentation();
-
-    const intervalId = setInterval(() => {
-      fetchPresentation();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
   }, [presentationId]);
 
-  const handleReaction = async (
+  const handleReaction = (
     reactionType: "thumbs_up" | "heart" | "laugh" | "surprise"
   ) => {
     try {
-      await addReaction({ id: presentationId, reactionType });
-      fetchPresentation();
+      sendMessage({ reaction_type: reactionType });
     } catch (error) {
       console.error("エラー:", error);
       setModalTitle("エラー");
