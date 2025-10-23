@@ -31,7 +31,7 @@ export const useWebSocket = ({url, onMessage, onOpen, onClose, onError}: UseWebS
                 ws.close()
             }
         };
-    }, [url, onMessage, onOpen, onClose, onError])
+    }, [url])
 
     const sendMessage = useCallback((data: any) => {
     if (websocketRef.current?.readyState === WebSocket.OPEN) {
