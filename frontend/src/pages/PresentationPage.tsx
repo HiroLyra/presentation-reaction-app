@@ -2,7 +2,7 @@ import { Container, Box, Typography, Button, Paper, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
-import { getPresentation, addReaction } from "../api/presentationApi";
+import { getPresentation } from "../api/presentationApi";
 import type { GetPresentationResponse } from "../types/presentation";
 import Modal from "../components/Modal";
 import { useWebSocket } from "../hooks/useWebSocket";
@@ -22,7 +22,7 @@ const PresentationPage = () => {
 
   const { sendMessage } = useWebSocket({
     url: `wss://presentation-reaction-api.onrender.com/ws/presentations/${presentationId}/`,
-    onMessage: (data) => {
+    onMessage: () => {
       fetchPresentation();
     },
   });
